@@ -23,7 +23,7 @@ jobs:
     
     - name: Install Android NDK
       run: |
-        sdkmanager --install "ndk;25.1.8937393" "platforms;android-30" "build-tools;30.0.3"
+        sdkmanager --install "ndk;25.1.8937393" "platforms;android-33" "build-tools;33.0.0"
     
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -46,4 +46,3 @@ jobs:
       with:
         name: FileMonitor-APK
         path: ./*.apk
-
