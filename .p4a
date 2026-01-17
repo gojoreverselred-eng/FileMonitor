@@ -1,0 +1,11 @@
+--requirements=python3,kivy,requests,watchdog,pyjnius,android
+--permission=INTERNET
+--permission=READ_EXTERNAL_STORAGE  
+--permission=WRITE_EXTERNAL_STORAGE
+--arch=arm64-v8a
+--package=org.monitor.filemonitor
+--name=FileMonitor
+--version=1.0
+--bootstrap=sdl2
+--private=.
+--release
