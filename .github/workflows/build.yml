@@ -32,6 +32,8 @@ jobs:
     
     - name: Install p4a
       run: |
+        sudo apt-get update
+        sudo apt-get install -y autoconf automake libtool pkg-config
         pip install --upgrade pip
         pip install python-for-android cython
     
