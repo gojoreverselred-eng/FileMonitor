@@ -23,25 +23,27 @@ jobs:
     
     - name: Install Android NDK
       run: |
-        sdkmanager --install "ndk;25.1.8937393"
+        sdkmanager --install "ndk;25.1.8937393" "platforms;android-30" "build-tools;30.0.3"
     
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
     
-    - name: Install dependencies
+    - name: Install p4a
       run: |
         pip install --upgrade pip
-        pip install buildozer cython==0.29.33
+        pip install python-for-android cython
     
-    - name: Build with Buildozer
+    - name: Build APK with p4a
       run: |
+        export ANDROID_SDK_ROOT=$ANDROID_HOME
         export ANDROID_NDK_HOME=$ANDROID_SDK_ROOT/ndk/25.1.8937393
-        buildozer android debug
+        p4a apk --private . --package=org.monitor.filemonitor --name "FileMonitor" --version 1.0 --bootstrap=sdl2 --requirements=python3,kivy,requests,watchdog,pyjnius,android --permission INTERNET --permission READ_EXTERNAL_STORAGE --permission WRITE_EXTERNAL_STORAGE --arch=arm64-v8a --release
     
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: FileMonitor-APK
-        path: bin/*.apk
+        path: ./*.apk
+
